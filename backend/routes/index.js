@@ -1,8 +1,8 @@
-import exp from "express";
+import express from "express";
 import userRouter from "./user.js";
 
-const router = exp.Router();
+const router = express.Router();
 
-router.get("/api/v1", userRouter);
+router.use("/user",  userRouter);
 
 export default router;

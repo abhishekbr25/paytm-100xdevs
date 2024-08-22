@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { mongo } from "mongoose";
 
 export function connectdb() {
   try {
@@ -21,5 +21,17 @@ const userSchema = new mongoose.Schema({
   lastname: String,
 });
 
-export const User  =  mongoose.model('User', userSchema)
+const accountSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+  account: {
+    type: Number,
+    required: true,
+    default: 1000,
+  },
+});
 
+export const User = mongoose.model("User", userSchema);
+export const Account = mongoose.model("Account", accountSchema);
