@@ -24,9 +24,7 @@ router.post("/signup", async (req, res) => {
   if (user) return res.json({ msg: "user already exits" });
 
   const newuser = await User.create(req.body);
-  const token = jwt.sign({ userId: newuser._id }, JWT_SECRET);
-  //   req.headers(authorization= "Bearer ");
-  console.log(res.headersSent);
+  const token = jwt.sign({ userId: newuser._id }, JWT_SECRET); 
   return res.json({
     message: "User created successfully",
     token: token,
@@ -41,16 +39,16 @@ const updateSchema = z.object({
 
 router.put("/", authMiddleware, async (req, res) => {
   const { success, data } = updateSchema.safeParse(req.body);
-  // console.log(data + success); 
+  // console.log(data + success);
   if (!success) {
     res.status(411).json({
       message: "Error while updating information",
     });
-  } 
+  }
   const user = await User.findOneAndUpdate({ _id: req.userId }, req.body, {
     new: true,
-  }); 
-  if (!user) return res.status(403).json({}); 
+  });
+  if (!user) return res.status(403).json({});
   res.json({ msg: "success uptdate", user });
 });
 

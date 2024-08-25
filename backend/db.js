@@ -27,8 +27,7 @@ const accountSchema = new mongoose.Schema({
     ref: "User",
   },
   account: {
-    type: Number,
-    required: true,
+    type: Number, 
     default: 1000,
   },
 });
