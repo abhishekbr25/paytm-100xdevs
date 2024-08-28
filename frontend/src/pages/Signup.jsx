@@ -39,6 +39,7 @@ export const Signup = () => {
           />
           <div className="pt-4">
             <Button
+              label={"Sign up"}
               onClick={async () => {
                 const res = await axios.post(
                   "http://localhost:2002/api/v1/user/signup",
@@ -51,7 +52,6 @@ export const Signup = () => {
                 );
                 localStorage.setItem("token", res.data.token);
               }}
-              label={"Sign up"}
             />
           </div>
           <BottomWarning
